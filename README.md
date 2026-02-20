@@ -31,7 +31,7 @@ Users can register, login, browse food items, add to cart, place orders, and rec
 
 1. Clone the repository
 
-git clone https://github.com/yourusername/Food-Ordering-System.git
+git clone https://github.com/rishi23200-oss/Food-Ordering-System.git
 
 
 2. Create virtual environment
