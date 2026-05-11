@@ -145,22 +145,18 @@ def proceed_to_payment(request, order_id):
 
     order = Order.objects.get(order_id=order_id)
 
-    address = "Home Delivery Address"   
+    address = "Home Delivery Address"
 
-   
     order.status = "Confirmed"
     order.save()
 
-    
     Cart.objects.all().delete()
 
- 
-    send_email_view(
-        email=request.user.email,
-        user=request.user,
-        order=order,
-        address=address,
-    )
+    # Send email in background thread
+    threading.Thread(
+        target=send_email_view,
+        args=(request.user.email, request.user, order, address)
+    ).start()
 
     return redirect("foodsapp:billing", order_id=order.order_id)
 
