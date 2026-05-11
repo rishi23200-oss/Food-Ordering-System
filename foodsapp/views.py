@@ -139,7 +139,7 @@ def make_order(request):
 
     return redirect("foodsapp:order_success", order_id=order.order_id)
 
-
+import threading
 @login_required
 def proceed_to_payment(request, order_id):
 
