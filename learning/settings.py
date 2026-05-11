@@ -172,8 +172,8 @@ STATIC_URL = "/static/"
 # EMAIL Config
 
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
