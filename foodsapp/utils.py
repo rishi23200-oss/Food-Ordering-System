@@ -4,6 +4,7 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from .models import OrderItem
 
+
 def send_email_view(email, user, order, address):
     try:
         subject = "Your order & payment is successful ✅"
@@ -25,12 +26,15 @@ def send_email_view(email, user, order, address):
         plain_message = strip_tags(html_message)
 
         send_mail(
-            subject=subject,
-            message=plain_message,
-            from_email=from_email,
-            recipient_list=recipient_list,
+            subject,
+            plain_message,
+            from_email,
+            recipient_list,
             html_message=html_message,
+            fail_silently=True   # IMPORTANT
         )
 
+        print("Email sent successfully")
+
     except Exception as e:
-        print("Email error:", e)
+        print("Email sending failed:", e)
