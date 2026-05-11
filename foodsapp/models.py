@@ -142,6 +142,11 @@ class Order(models.Model):
     )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="Pending")
 
+    # 🔽 ADD THESE FOR RAZORPAY
+    razorpay_order_id = models.CharField(max_length=200, blank=True, null=True)
+    razorpay_payment_id = models.CharField(max_length=200, blank=True, null=True)
+    payment_status = models.CharField(max_length=50, default="Pending")
+
     def __str__(self):
         return str(self.order_id)
 

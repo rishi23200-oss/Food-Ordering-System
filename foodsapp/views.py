@@ -187,5 +187,32 @@ def billing_view(request, order_id):
 
 
 
+import razorpay
+from django.conf import settings
 
+@login_required
+def proceed_to_payment(request, order_id):
+
+    order = Order.objects.get(order_id=order_id)
+
+    client = razorpay.Client(
+        auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
+    )
+
+    payment = client.order.create({
+        "amount": int(order.total_price * 100),  # in paise
+        "currency": "INR",
+        "payment_capture": "1"
+    })
+
+    order.razorpay_order_id = payment["id"]
+    order.save()
+
+    context = {
+        "order": order,
+        "payment": payment,
+        "razorpay_key": settings.RAZORPAY_KEY_ID
+    }
+
+    return render(request, "payment.html", context)
 
