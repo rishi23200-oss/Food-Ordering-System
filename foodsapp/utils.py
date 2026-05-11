@@ -31,7 +31,7 @@ def send_email_view(email, user, order, address):
         from_email=from_email,
         recipient_list=recipient_list,
         html_message=html_message,
-        fail_silently=False,
+        fail_silently=True,
     )
 
 
