@@ -64,6 +64,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'django_auto_logout.middleware.auto_logout',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 
@@ -151,6 +153,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+ALLOWED_HOSTS = ["*"]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATIC_URL = "/static/"
 # autologout config
 
 
